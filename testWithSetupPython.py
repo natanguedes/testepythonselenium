@@ -11,25 +11,38 @@ import unittest, time, re
 class Test1(unittest.TestCase):
     def setUp(self):
 
-        self.driver = webdriver.Chrome("E:\\chrome\\chromedriver.exe")
+        self.driver = webdriver.Chrome("D:\\testes\\chromedriver\\chromedriver.exe")
         self.driver.implicitly_wait(30)
         self.base_url = "https://www.katalon.com/"
         self.verificationErrors = []
         self.accept_next_alert = True
     
     def test_1(self):
-        driver = self.driver
-        driver.get("https://www.qualitech.info/")
-        driver.find_element_by_link_text("Telefonia").click()
-        driver.find_element_by_xpath(u"(.//*[normalize-space(text()) and normalize-space(.)='Itens por página'])[1]/following::select[1]").click()
-        Select(driver.find_element_by_xpath(u"(.//*[normalize-space(text()) and normalize-space(.)='Itens por página'])[1]/following::select[1]")).select_by_visible_text("30")
-        driver.find_element_by_xpath(u"(.//*[normalize-space(text()) and normalize-space(.)='Itens por página'])[1]/following::select[1]").click()
-    
+
+        self.driver.get("http://www.google.com/")
+
+        # Abre uma nova aba
+        self.driver.find_element_by_tag_name('body').send_keys(Keys.CONTROL + 't')
+
+        # Carrega a nova aba
+        self.driver.get('http://stackoverflow.com/')
+
+        self.driver.get("http://www.python.org")
+        self.assertIn("Python", self.driver.title)
+        elem = self.driver.find_element_by_name("q")
+        elem.send_keys("selenium")
+        elem.send_keys(Keys.RETURN)
+        self.assertIn("Python", self.driver.title)
+        print(self.driver.title)
+        # Fecha a aba
+      #@  self.driver.find_element_by_tag_name('body').send_keys(Keys.CONTROL + 'w')
+
+        # self.driver.close()
     def is_element_present(self, how, what):
         try: self.driver.find_element(by=how, value=what)
         except NoSuchElementException as e: return False
         return True
-    
+
     def is_alert_present(self):
         try: self.driver.switch_to_alert()
         except NoAlertPresentException as e: return False
