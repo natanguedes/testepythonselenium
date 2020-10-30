@@ -34,7 +34,7 @@ class Test1(unittest.TestCase):
         elem.send_keys(Keys.RETURN)
         self.assertIn("Python", self.driver.title)
         print(self.driver.title)
-        # Fecha a aba
+        # Fecha a abaixo
       #@  self.driver.find_element_by_tag_name('body').send_keys(Keys.CONTROL + 'w')
 
         # self.driver.close()
