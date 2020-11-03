@@ -11,36 +11,26 @@ import unittest, time, re
 class Test1(unittest.TestCase):
     def setUp(self):
 
-        self.driver = webdriver.Chrome("D:\\testes\\chromedriver\\chromedriver.exe")
+        self.driver = webdriver.Chrome("C:\\Users\\natan\\Downloads\\chromedriver_win32\\chromedriver.exe")
         self.driver.implicitly_wait(30)
         self.base_url = "https://www.katalon.com/"
         self.verificationErrors = []
         self.accept_next_alert = True
     
     def test_1(self):
-        driver = self.driver
-        driver.get("https://erp.kamaleon.com.br/homologacao/login.do?metodo=loginGet")
-       #@driver.find_element_by_id("login").clear()
-        driver.find_element_by_id("login").send_keys("natanael")
-        #driver.find_element_by_id("senha").clear()
-        driver.find_element_by_id("senha").send_keys("123456")
-        driver.find_element_by_id("btnLogin").click()
-        driver.get("https://erp.kamaleon.com.br/homologacao/incluirAlterar.afastamento.do?metodo=incluirGet")
-        driver.find_element_by_id("inicioAfastamento").click()
-        driver.find_element_by_id("inicioAfastamento").clear()
-        driver.find_element_by_id("inicioAfastamento").send_keys("23/10/2020")
-        driver.find_element_by_id("form1").click()
-        driver.find_element_by_id("fimAfastamento").click()
-        #driver.find_element_by_id("fimAfastamento").clear()
-        driver.find_element_by_id("fimAfastamento").send_keys("28/11/2020")
-        driver.find_element_by_id("form1").click()
-        driver.find_element_by_id("observacao").click()
-        driver.find_element_by_id("observacao").clear()
-        driver.find_element_by_id("observacao").send_keys("teste")
-        driver.find_element_by_link_text("Confirmar").click()
-        self.assertEqual("Sucesso!", driver.find_element_by_xpath("//form[@id='form1']/h1").text)
-        driver.close()
 
+        self.driver.get("http://www.google.com/")
+
+        # Abre uma nova aba
+        self.driver.find_element_by_tag_name('body').send_keys(Keys.CONTROL + 't')
+
+        # Carrega a nova aba
+        driver.get('http://stackoverflow.com/')
+
+        # Fecha a aba
+        driver.find_element_by_tag_name('body').send_keys(Keys.CONTROL + 'w')
+
+        driver.close()
     def is_element_present(self, how, what):
         try:
             self.driver.find_element(by=how, value=what)
